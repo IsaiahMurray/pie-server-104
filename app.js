@@ -9,7 +9,7 @@ const middlewares = require('./middleware');
 app.use(middlewares.CORS);
 app.use(Express.json());
 app.use('/user', controllers.userController);
-app.use('/pies', controllers.pieController);
+app.use('/pies', middlewares.validateSession,controllers.pieController);
 
 dbConnection.authenticate()
 .then(() => {

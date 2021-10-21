@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 
 //! CREATE PIE
-router.post("/create", validateSession, async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const { nameOfPie, baseOfPie, crust, timeToBake, servings, rating } =
       req.body;
@@ -74,33 +74,6 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ message: `Failed to update pie: ${err}` });
   }
 });
-
-// router.delete("/:delete", async (req, res) => {
-//   const { nameOfPie, baseOfPie, crust, timeToBake, servings, rating } =
-//     req.body;
-//   try {
-//     await PieModel.findOne(
-//       {
-//         nameOfPie,
-//         baseOfPie,
-//         crust,
-//         timeToBake,
-//         servings,
-//         rating,
-//       },
-//       { where: { nameOfPie: req.params.delete }, returning: true }
-//     ).then((result) => {
-//       res.status(200).json({
-//         message: "Pie successfully deleted!",
-//         updatedPie: result,
-//       });
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       message: `Failed to delete pie: ${err}`,
-//     });
-//   }
-// });
 
 //! DELETE PIE BY ID
 router.delete("/:id", async (req, res) => {
